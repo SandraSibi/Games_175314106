@@ -12,8 +12,9 @@ import java.awt.Color;
  * @author user only
  */
 public class Sel {
-    private int posisiX; // nomor baris, dimulai dari nol (0)
-    private int posisiY; // nomor kolom, dimulai dari nol (0)
+
+    private int baris;
+    private int kolom;
     private int lebar;
     private int tinggi;
 
@@ -24,36 +25,35 @@ public class Sel {
     public Sel() {
     }
 
-    public Sel(int posisiX, int posisiY, char nilai) {
-        this.posisiX = posisiX;
-        this.posisiY = posisiY;
+    public Sel(int baris, int kolom, char nilai) {
+        this.baris = baris;
+        this.kolom = kolom;
         this.nilai = nilai;
     }
 
-    public Sel(int posisiX, int posisiY, char nilai, Color warna) {
-        this.posisiX = posisiX;
-        this.posisiY = posisiY;
+    public Sel(int baris, int kolom, char nilai, Color warna) {
+        this.baris = baris;
+        this.kolom = kolom;
         this.nilai = nilai;
         this.warna = warna;
     }
 
-    public Sel(int posisiX, int posisiY, int lebar, int tinggi, char nilai, Color warna) {
-        this.posisiX = posisiX;
-        this.posisiY = posisiY;
+    public Sel(int baris, int kolom, int lebar, int tinggi, char nilai, Color warna) {
+        this.baris = baris;
+        this.kolom = kolom;
         this.lebar = lebar;
         this.tinggi = tinggi;
         this.nilai = nilai;
         this.warna = warna;
     }
 
-    
     /**
      * Fungsi mengecek sel ada di batas kiri
      *
      * @return
      */
     public boolean isBatasKiri() {
-        if (posisiX <= 0) {
+        if (kolom * lebar <= 0) {
             return true;
         } else {
             return false;
@@ -67,7 +67,7 @@ public class Sel {
      * @return
      */
     public boolean isBatasKanan() {
-        if (posisiX + lebar < Tempat.batasKanan) {
+        if (kolom * lebar + lebar < Tempat.batasKanan) {
             return false;
         } else {
             return true;
@@ -79,7 +79,16 @@ public class Sel {
      */
     public void geserKanan() {
         if (isBatasKanan() == false) {
-            posisiX = posisiX + lebar;
+            kolom++;
+        }
+    }
+
+    /**
+     * Fungsi untuk menggeser sel ke kanan
+     */
+    public void geserKiri() {
+        if (isBatasKiri() == false) {
+            kolom--;
         }
     }
 
@@ -98,31 +107,31 @@ public class Sel {
     }
 
     /**
-     * @return the posisiX
+     * @return the baris
      */
-    public int getPosisiX() {
-        return posisiX;
+    public int getBaris() {
+        return baris;
     }
 
     /**
-     * @param posisiX the posisiX to set
+     * @param baris the baris to set
      */
-    public void setPosisiX(int posisiX) {
-        this.posisiX = posisiX;
+    public void setBaris(int baris) {
+        this.baris = baris;
     }
 
     /**
-     * @return the posisiY
+     * @return the kolom
      */
-    public int getPosisiY() {
-        return posisiY;
+    public int getKolom() {
+        return kolom;
     }
 
     /**
-     * @param posisiY the posisiY to set
+     * @param kolom the kolom to set
      */
-    public void setPosisiY(int posisiY) {
-        this.posisiY = posisiY;
+    public void setKolom(int kolom) {
+        this.kolom = kolom;
     }
 
     /**
