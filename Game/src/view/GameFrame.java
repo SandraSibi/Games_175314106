@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -26,11 +27,21 @@ import model.Sel;
  * @author user only
  */
 public class GameFrame extends JFrame {
+
     private TempatPanel tempatPanel;
 
     private JLabel perintahlabel;
     private JTextField perintahText;
-    private JButton okButton;
+    private JButton pindahKananButton;
+    private JButton pindahKiriButton;
+    private JButton pindahAtasButton;
+    private JButton pindahBawahButton;
+    private JButton serongKananAtasButton;
+    private JButton serongKananBawahButton;
+    private JButton serongKiriBawahButton;
+    private JButton serongKiriAtasButton;
+    private JButton tambahButton;
+    private JButton hapusButton;
 
     private JMenuBar menuBar;
     private JMenu gameMenu;
@@ -50,7 +61,7 @@ public class GameFrame extends JFrame {
 
     public void init() {
         // set ukuran dan layout
-        this.setSize(500, 300);
+        this.setSize(800, 500);
         this.setLayout(new BorderLayout());
 
         // set menu Bar
@@ -82,16 +93,100 @@ public class GameFrame extends JFrame {
         this.perintahText = new JTextField(20);
         southPanel.add(perintahText);
 
-        this.okButton = new JButton("OK");
-        southPanel.add(okButton);
+        this.pindahKananButton = new JButton("Kanan");
+        southPanel.add(pindahKananButton);
 
-        okButton.addActionListener(new ActionListener() {
+        pindahKananButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pindahKanan();
             }
         });
 
+        this.pindahKiriButton = new JButton("Kiri");
+        southPanel.add(pindahKiriButton);
+
+        pindahKiriButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pindahKiri();
+            }
+        });
+
+        this.pindahAtasButton = new JButton("Atas");
+        southPanel.add(pindahAtasButton);
+
+        pindahAtasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pindahAtas();
+            }
+        });
+
+        this.pindahBawahButton = new JButton("Bawah");
+        southPanel.add(pindahBawahButton);
+
+        pindahBawahButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pindahBawah();
+            }
+        });
+        this.serongKananAtasButton = new JButton("SerongKananAtas");
+        southPanel.add(serongKananAtasButton);
+
+        serongKananAtasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                serongKananAtas();
+            }
+        });
+        this.serongKananBawahButton = new JButton("SerongKananBawah");
+        southPanel.add(serongKananBawahButton);
+
+        serongKananBawahButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                serongKananBawah();
+            }
+        });
+        this.serongKiriAtasButton = new JButton("serongKiriAtas");
+        southPanel.add(serongKiriAtasButton);
+
+        serongKiriAtasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                serongKiriAtas();
+            }
+        });
+        this.serongKiriBawahButton = new JButton("serongKiriBawah");
+        southPanel.add(serongKiriBawahButton);
+
+        serongKiriBawahButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                serongKiriBawah();
+            }
+        });
+
+        this.tambahButton = new JButton("tambahBola");
+        southPanel.add(tambahButton);
+        tambahButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tambahBola();
+            }
+        });
+
+        this.hapusButton = new JButton("hapusBola");
+        southPanel.add(hapusButton);
+
+        hapusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hapusBola();
+            }
+        });
         // set contentPane
         Container cp = this.getContentPane();
         if (tempatPanel != null) {
@@ -101,6 +196,24 @@ public class GameFrame extends JFrame {
 
         // set visible= true
         this.setVisible(true);
+    }
+
+    /**
+     * Fungsi untuk tambahBola
+     */
+    public void tambahBola() {
+        tempatPanel.getTempat().tambahSel(new Sel(0, 0, 25, 25, '#', Color.BLUE));
+        // gambar ulang tempat panel
+        getTempatPanel().repaint();
+    }
+
+    /**
+     * Fungsi hapus bola
+     */
+    public void hapusBola() {
+        tempatPanel.getTempat().hapusSel();
+        // gambar ulang tempat panel
+        getTempatPanel().repaint();
     }
 
     /**
@@ -117,6 +230,53 @@ public class GameFrame extends JFrame {
         getTempatPanel().repaint();
     }
 
+    public void pindahKiri() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).geserKiri();
+        }
+        getTempatPanel().repaint();
+    }
+
+    public void pindahAtas() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).geserAtas();
+        }
+        getTempatPanel().repaint();
+    }
+
+    public void pindahBawah() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).geserBawah();
+        }
+        getTempatPanel().repaint();
+
+    }
+
+    public void serongKananAtas() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).SerongKananAtas();
+        }
+        getTempatPanel().repaint();
+    }
+    public void serongKananBawah() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).SerongKananBawah();
+        }
+        getTempatPanel().repaint();
+    }
+     public void serongKiriAtas() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).SerongKiriAtas();
+        }
+        getTempatPanel().repaint();
+    }
+     public void serongKiriBawah() {
+        for (int i = 0; i < getTempatPanel().getTempat().getDaftarSel().size(); i++) {
+            getTempatPanel().getTempat().getDaftarSel().get(i).serongKiriBawah();
+        }
+        getTempatPanel().repaint();
+    }
+
     /**
      * @return the tempatPanel
      */
@@ -130,5 +290,4 @@ public class GameFrame extends JFrame {
     public void setTempatPanel(TempatPanel tempatPanel) {
         this.tempatPanel = tempatPanel;
     }
-
 }

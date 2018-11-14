@@ -44,6 +44,16 @@ public class Tempat {
     public void tambahSel(Sel sel){
         daftarSel.add(sel);
     }
+    
+    /**
+     * Fungsi hapus sel.
+     * Sel yang paling akhir diremove dari daftar sel.
+     */
+    public void hapusSel(){
+        if(!daftarSel.isEmpty()){
+            daftarSel.remove(daftarSel.size()-1);
+        }
+}
 
     /**
      * @return the tinggi

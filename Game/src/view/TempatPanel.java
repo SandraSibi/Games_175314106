@@ -22,6 +22,7 @@ public class TempatPanel extends JPanel {
     private Tempat tempat;
 
     public TempatPanel() {
+//        this.setBackground(new Color(240,240,240));
     }
 
     public TempatPanel(Tempat tempat) {

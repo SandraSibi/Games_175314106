@@ -13,10 +13,10 @@ import java.awt.Color;
  */
 public class Sel {
 
-    private int baris;
-    private int kolom;
-    private int lebar;
-    private int tinggi;
+    private int baris = 0;
+    private int kolom = 0;
+    private int lebar = 25;
+    private int tinggi = 25;
 
     private char nilai;
 
@@ -80,6 +80,8 @@ public class Sel {
     public void geserKanan() {
         if (isBatasKanan() == false) {
             kolom++;
+        } else {
+            kolom--;
         }
     }
 
@@ -89,6 +91,9 @@ public class Sel {
     public void geserKiri() {
         if (isBatasKiri() == false) {
             kolom--;
+        } else {
+            kolom++;
+
         }
     }
 
@@ -96,19 +101,79 @@ public class Sel {
      * Fungsi untuk mengecek sel ada di batas atas
      */
     public boolean isBatasAtas() {
-        return false;
+        if (baris * tinggi <= 0) {
+            return true;
+        } else {
+            return false;
+
+        }
     }
 
-    /**
-     * Fungsi untuk mengecek sel ada di batas bawah
-     */
     public boolean isBatasBawah() {
-        return false;
+        if (baris * tinggi + tinggi < Tempat.batasBawah) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
      * @return the baris
      */
+    public void geserAtas() {
+        if (isBatasAtas() == false) {
+            baris--;
+        } else {
+            baris++;
+        }
+
+    }
+
+    public void geserBawah() {
+        if (isBatasBawah() == false) {
+            baris++;
+        } else {
+            baris--;
+        }
+    }
+
+    public void SerongKananAtas() {
+        if (isBatasAtas() == false && isBatasKanan() == false) {
+            baris--;
+            kolom++;
+        } else {
+            baris++;
+            kolom--;
+        }
+    }
+    public void SerongKananBawah(){
+          if (isBatasBawah()== false && isBatasKanan() == false) {
+            baris++;
+            kolom++;
+        } else {
+            baris--;
+            kolom--;
+        }
+    }
+    
+    public void SerongKiriAtas(){
+        if (isBatasAtas() == false && isBatasKiri() == false) {
+            baris--;
+            kolom--;
+        } else {
+            baris++;
+            kolom++;
+    }}
+    public void serongKiriBawah(){
+        if (isBatasAtas() == false && isBatasKiri()== false) {
+            baris++;
+            kolom--;
+        } else {
+            baris--;
+            kolom++;
+        }
+    }
+
     public int getBaris() {
         return baris;
     }

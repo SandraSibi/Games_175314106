@@ -5,23 +5,21 @@
  */
 package test;
 
-import java.awt.Color;
-import model.Sel;
 import model.Tempat;
 import view.GameFrame;
 import view.TempatPanel;
 
 /**
  *
- * @author user only
+ * @author admin
  */
-public class TestGame {
+public class TestGame3 {
     public static void main(String[] args) {
         // buat 1 sel
-        Sel sel = new Sel(1,1 ,20,20, '@', Color.BLUE);
+//        Sel sel = new Sel(1,1 ,20,20, '@', Color.RED);
         // buat 1 tempat dan tambahkan sel ke tempat
         Tempat tempat = new Tempat();
-        tempat.tambahSel(sel);
+//        tempat.tambahSel(sel);
         // Set ukuran tempat
         Tempat.batasKanan=500;
         Tempat.batasBawah=300;
@@ -32,3 +30,4 @@ public class TestGame {
         GameFrame game = new GameFrame("My Game",tempatPanel);
     }
 }
+
